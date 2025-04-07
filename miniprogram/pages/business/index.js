@@ -1,0 +1,4 @@
+Page({
+  data: {},
+  onClickBusinessInfo(e) {},
+});
