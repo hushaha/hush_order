@@ -1,5 +1,5 @@
 {
-  "name": "quickstartFunctions",
+  "name": "cloudfunc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cloudbase/node-sdk": "3.7",
     "wx-server-sdk": "~2.4.0"
   }
 }

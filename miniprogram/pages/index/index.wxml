@@ -1,3 +1,13 @@
 <view class="container">
-  <view class="title">hello</view>
+  <swiper class="main-swiper" indicator-dots="true" autoplay="true" interval="3000">
+  <block wx:for="{{bannerList}}" wx:key="index">
+    <swiper-item>
+      <image class="swiper-image" src="{{item.imageUrl}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+  <view class="button-container">
+    <view class="button" bindtap="navigateToPickup">自提</view>
+    <view class="button" bindtap="navigateToDelivery">外送</view>
+  </view>
 </view>
