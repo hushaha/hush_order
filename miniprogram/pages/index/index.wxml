@@ -1,13 +1,18 @@
 <view class="container">
-  <swiper class="main-swiper" indicator-dots="true" autoplay="true" interval="3000">
-  <block wx:for="{{bannerList}}" wx:key="index">
-    <swiper-item>
-      <image class="swiper-image" src="{{item.imageUrl}}"></image>
-    </swiper-item>
-  </block>
-</swiper>
-  <view class="button-container">
-    <view class="button" bindtap="navigateToPickup">自提</view>
-    <view class="button" bindtap="navigateToDelivery">外送</view>
+  <view class="swiper-main">
+    <image wx:if="{{bannerList.length == 1}}" class="swiper-image" src="{{bannerList[0]}}"></image>
+    <swiper wx:else class="swiper-list" indicator-dots="true" autoplay="true" interval="10000">
+      <block wx:for="{{bannerList}}" wx:key="index">
+        <swiper-item>
+          <image class="swiper-image" mode="acpectFit" src="{{item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="button-warp">
+    <view class="button-container">
+      <view class="button" bindtap="navigateToPickup">自提</view>
+      <view class="button" bindtap="navigateToDelivery">外送</view>
+    </view>
   </view>
 </view>

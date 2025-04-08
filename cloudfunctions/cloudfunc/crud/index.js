@@ -9,7 +9,7 @@ const models = app.models;
 
 // 通用CRUD云函数入口函数
 exports.main = async (event, context) => {
-  const { model, operation, data, query, update, pageSize = 10, pageNumber = 1, getCount } = event;
+  const { model, operation, data, query, pageSize = 10, pageNumber = 1, getCount } = event;
 
   if (!model || !operation) {
     return {
@@ -48,14 +48,14 @@ exports.main = async (event, context) => {
         };
 
       case 'update':
-        if (!query || !update) {
+        if (!query || !data) {
           return {
             success: false,
             message: '更新操作需要query和update参数',
           };
         }
         const { data: updateResult } = await models[model].update({
-          data: update,
+          data,
           filter: query,
         });
         return {

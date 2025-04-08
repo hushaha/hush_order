@@ -1,55 +1,25 @@
+import { getBannerList } from '../../server/index/indexService';
+import { transImgUrl } from '../../utils/index';
+
 Page({
   data: {
     bannerList: [],
   },
-  async onLoad(options) {
-    try {
-      const res = await wx.cloud.callFunction({
-        name: 'cloudfunc',
-        data: {
-          type: 'crud',
-          data: {
-            model: 'bjlb',
-            operation: 'read',
-            query: {
-              code: 'index',
-            },
-          },
-        },
-      });
-
-      if (res.errMsg === 'cloud.callFunction:ok') {
-        console.log(res.result.data.records.map((item) => item.img));
-
-        const imgList = await wx.cloud.getTempFileURL({ fileList: res.result.data.records.map((item) => item.img) });
-        console.log(imgList);
-        // this.setData({
-        //   bannerList: res.records,
-        // });
-      } else {
-        wx.showToast({
-          title: '数据加载失败',
-          icon: 'none',
-        });
-      }
-    } catch (err) {
-      wx.showToast({
-        title: '网络请求失败',
-        icon: 'none',
+  async onLoad() {
+    const res = await getBannerList();
+    if (res.success) {
+      const imgList = await transImgUrl(res.data.records.map((item) => item.img));
+      this.setData({
+        bannerList: imgList,
       });
     }
   },
-  onShow: function () {
-    // 页面显示时执行
-  },
-  onReady: function () {
-    // 页面首次渲染完毕时执行
-  },
-  onHide: function () {
-    // 页面隐藏时执行
-  },
-  onUnload: function () {
-    // 页面卸载时执行
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0,
+      });
+    }
   },
   gotoGoodsListPage() {
     wx.navigateTo({

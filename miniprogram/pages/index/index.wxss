@@ -1,29 +1,44 @@
-.main-image {
+.swiper-main {
   width: 100%;
-  height: 60vh;
+  height: 70vh;
   position: relative;
 }
 
-.main-image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100rpx;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+.swiper-list {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}
+
+.button-warp {
+  padding: 20rpx 40rpx;
 }
 
 .button-container {
   display: flex;
   justify-content: space-around;
-  padding: 40rpx;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  position: relative;
+}
+
+.button-container::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  bottom: 0;
+  width: 1rpx;
+  height: 50%;
+  background-color: #e5e5e5;
 }
 
 .button {
-  font-size: 32rpx;
-  color: #333;
+  font-size: 42rpx;
   padding: 20rpx 40rpx;
-  border-radius: 8rpx;
-  border: 1rpx solid #ccc;
+  position: relative;
 }
