@@ -1,9 +1,13 @@
 import { getBannerList } from '../../server/index/indexService';
 import { transImgUrl } from '../../utils/index';
 
+const app = getApp();
+
 Page({
   data: {
+    cardCur: 1,
     bannerList: [],
+    customBarHeight: app.globalData.CustomBar
   },
   async onLoad() {
     const res = await getBannerList();
@@ -20,6 +24,11 @@ Page({
         selected: 0,
       });
     }
+  },
+  onCardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
+    })
   },
   gotoGoodsListPage() {
     wx.navigateTo({

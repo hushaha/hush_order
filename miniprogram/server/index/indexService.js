@@ -10,9 +10,12 @@ export const getBannerList = async () => {
           {
             img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239626',
           },
-          // {
-          //   img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239623',
-          // },
+          {
+            img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239623',
+          },
+          {
+            img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239623',
+          },
         ],
       },
     };

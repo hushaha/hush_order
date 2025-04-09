@@ -1,17 +1,25 @@
+.cu-custom{
+  background-color: #fff;
+}
+
 .swiper-main {
   width: 100%;
-  height: 70vh;
+  height: 40vh !important;
   position: relative;
+  background-color: #fff;
 }
 
-.swiper-list {
-  width: 100%;
-  height: 100%;
+.card-swiper {
+  height: 40vh !important;
 }
 
-.swiper-image {
-  width: 100%;
-  height: 100%;
+.card-swiper swiper-item {
+  padding-bottom: 40rpx;
+}
+
+.content-warp {
+  padding: 40rpx;
+  border-radius: 24rpx;
 }
 
 .button-warp {
@@ -21,24 +29,14 @@
 .button-container {
   display: flex;
   justify-content: space-around;
-  padding: 20rpx;
-  border-bottom: 1rpx solid #e5e5e5;
-  position: relative;
-}
-
-.button-container::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 25%;
-  bottom: 0;
-  width: 1rpx;
-  height: 50%;
-  background-color: #e5e5e5;
+  gap: 32rpx;
 }
 
 .button {
+  flex: 1;
+  text-align: center;
   font-size: 42rpx;
-  padding: 20rpx 40rpx;
-  position: relative;
+  padding: 40rpx 80rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
 }

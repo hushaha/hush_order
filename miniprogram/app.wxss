@@ -1,15 +1,5 @@
-/* button */
-button {
-  background: initial;
-}
-
-button:focus{
-  outline: 0;
-}
-
-button::after{
-  border: none;
-}
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
 
 page {
   background: #f6f6f6;
