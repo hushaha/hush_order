@@ -28,7 +28,7 @@ export const getBannerList = async () => {
         model: 'bjlb',
         operation: 'read',
         query: {
-          code: 'index',
+          code: 'index', // banner图片
         },
       },
     },

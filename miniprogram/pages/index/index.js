@@ -7,9 +7,25 @@ Page({
   data: {
     cardCur: 1,
     bannerList: [],
-    customBarHeight: app.globalData.CustomBar
+    customBarHeight: app.globalData.CustomBar,
+    logo: '',
   },
   async onLoad() {
+    // get logo
+    if (!app.globalData.config.logo) {
+      app.loadCallBack = () => {
+        this.setData({
+          logo: app.globalData.config.logo,
+        });
+        app.loadCallBack = null;
+      };
+    } else {
+      this.setData({
+        logo: app.globalData.config.logo,
+      });
+    }
+
+    // get banner list
     const res = await getBannerList();
     if (res.success) {
       const imgList = await transImgUrl(res.data.records.map((item) => item.img));
@@ -27,8 +43,8 @@ Page({
   },
   onCardSwiper(e) {
     this.setData({
-      cardCur: e.detail.current
-    })
+      cardCur: e.detail.current,
+    });
   },
   gotoGoodsListPage() {
     wx.navigateTo({
