@@ -7,3 +7,7 @@ page {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+page {
+  --color-primary: rgb(51, 116, 81);
+}

@@ -1,25 +1,6 @@
-import { isDev } from '../../envList';
 import { callFunction } from '../../utils/index';
 
 export const getBannerList = async () => {
-  if (isDev) {
-    return {
-      success: true,
-      data: {
-        records: [
-          {
-            img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239626',
-          },
-          {
-            img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239623',
-          },
-          {
-            img: 'https://order-3gdbxlltfdefc4c6-1352176522.tcloudbaseapp.com/resources/2025-04/lowcode-2239623',
-          },
-        ],
-      },
-    };
-  }
   return callFunction({
     name: 'cloudfunc',
     data: {
@@ -34,3 +15,67 @@ export const getBannerList = async () => {
     },
   });
 };
+
+// 获取销量最好的4个商品
+export const getTopGoods = async () => {
+  return callFunction({
+    name: 'cloudfunc',
+    data: {
+      type: 'crud',
+      data: {
+        model: 'shop_product',
+        operation: 'read',
+        query: {
+          orderBy: [
+            {
+              xl: "desc", // 创建时间，倒序
+            },
+          ],
+          pageSize: 4
+        }
+      },
+    },
+  })
+}
+
+export const getTypeList = async () => {
+  return callFunction({
+    name: 'cloudfunc',
+    data: {
+      type: 'crud',
+      data: {
+        model: 'shop_category',
+        operation: 'read',
+        query: {
+          select: {
+            $master: true,
+            ssfl: {
+              _id: true
+            }
+          },
+        }
+      },
+    },
+  })
+}
+
+export const getHotGoods = async () => {
+  return callFunction({
+    name: 'cloudfunc',
+    data: {
+      type: 'crud',
+      data: {
+        model: 'shop_product',
+        operation: 'read',
+        query: {
+          orderBy: [
+            {
+              xl: "desc", // 创建时间，倒序
+            },
+          ],
+          pageSize: 4
+        }
+      },
+    },
+  })
+}

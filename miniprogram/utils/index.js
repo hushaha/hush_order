@@ -1,9 +1,4 @@
-import { isDev } from '../envList';
-
 export const transImgUrl = async (fileList) => {
-  if (isDev) {
-    return fileList;
-  }
   const res = await wx.cloud.getTempFileURL({ fileList });
   return res.fileList.map((item) => item.tempFileURL);
 };

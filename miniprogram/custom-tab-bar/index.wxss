@@ -5,6 +5,7 @@
   width: 100%;
   height: 96rpx;
   margin: 0 auto;
+  background-color: #fff;
 }
 
 .tab-bar-list {
@@ -12,7 +13,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fff;
   border-radius: 30rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
 }

@@ -1,15 +1,25 @@
-import { getBannerList } from '../../server/index/indexService';
-import { transImgUrl } from '../../utils/index';
+import { getTopGoods, getTypeList, getHotGoods } from '../../server/index/indexService';
 
 const app = getApp();
 
 Page({
   data: {
-    cardCur: 1,
-    bannerList: [],
-    customBarHeight: app.globalData.CustomBar,
     logo: '',
+    cardCur: 1,
+    customBarHeight: app.globalData.CustomBar,
+    topGoods: [],
+    typeList: [],
+    hotGoods: [],
   },
+
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0,
+      });
+    }
+  },
+
   async onLoad() {
     // get logo
     if (!app.globalData.config.logo) {
@@ -25,40 +35,41 @@ Page({
       });
     }
 
-    // get banner list
-    const res = await getBannerList();
+    this.setTopGoods();
+    this.setTypeList();
+    this.setHotGoods();
+  },
+
+  async setTopGoods() {
+    const res = await getTopGoods();
     if (res.success) {
-      const imgList = await transImgUrl(res.data.records.map((item) => item.img));
       this.setData({
-        bannerList: imgList,
+        topGoods: res.data.records,
       });
     }
   },
-  onShow() {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0,
+
+  async setTypeList() {
+    const res = await getTypeList();
+    if (res.success) {
+      this.setData({
+        typeList: res.data.records,
       });
     }
   },
+
+  async setHotGoods() {
+    const res = await getHotGoods();
+    if (res.success) {
+      this.setData({
+        hotGoods: res.data.records,
+      });
+    }
+  },
+
   onCardSwiper(e) {
     this.setData({
       cardCur: e.detail.current,
-    });
-  },
-  gotoGoodsListPage() {
-    wx.navigateTo({
-      url: '/pages/goods-list/index',
-    });
-  },
-  navigateToPickup: function () {
-    wx.navigateTo({
-      url: '/pages/order/order?type=pickup',
-    });
-  },
-  navigateToDelivery: function () {
-    wx.navigateTo({
-      url: '/pages/order/order?type=delivery',
     });
   },
 });

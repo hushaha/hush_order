@@ -9,7 +9,7 @@ const models = app.models;
 
 // 通用CRUD云函数入口函数
 exports.main = async (event, context) => {
-  const { model, operation, data, query, pageSize = 10, pageNumber = 1, getCount } = event;
+  const { model, operation, data, query } = event;
 
   if (!model || !operation) {
     return {
@@ -36,12 +36,7 @@ exports.main = async (event, context) => {
         };
 
       case 'read':
-        const { data: readResult } = await models[model].list({
-          filter: query || {},
-          pageSize,
-          pageNumber,
-          getCount,
-        });
+        const { data: readResult } = await models[model].list(query);
         return {
           success: true,
           data: readResult,

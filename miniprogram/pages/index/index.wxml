@@ -1,23 +1,59 @@
-<view>
+<view class="page-content">
   <cu-custom isBack="{{true}}" hasBackIcon="{{false}}">
     <view slot="backText">
       <image class="cu-avatar round" src="{{logo}}"></image>
     </view>
   </cu-custom>
-  <view class="swiper-main">
-    <image wx:if="{{bannerList.length == 1}}" class="swiper-image" src="{{bannerList[0]}}"></image>
-    <swiper wx:else class="card-swiper square-dot" current="{{cardCur}}" circular="{{true}}" autoplay="{{false}}" interval="5000" duration="500" previous-margin="3rpx" bindchange="onCardSwiper">
-      <swiper-item wx:for="{{bannerList}}" wx:key="index" class="{{cardCur == index ? 'cur' : ''}}">
-        <view class="swiper-item">
-          <image class="swiper-image" mode="aspectFill" src="{{item}}"></image>
-        </view>
-      </swiper-item>
-    </swiper>
+  <view class="search-box">
+    <input type="text" class="search-input" placeholder="输入商品名称" />
+    <view class="cuIcon-search search-button"></view>
   </view>
-  <view class="content-warp" style="height:calc(60vh - {{customBarHeight}}px)">
-    <view class="button-container">
-      <view class="button" bindtap="navigateToPickup">自提</view>
-      <view class="button" bindtap="navigateToDelivery">外送</view>
+  <view class="good-list">
+    <view wx:for="{{topGoods}}" wx:key="index" class="good-item">
+      <view class="good-image-box">
+        <image class="good-image" mode="aspectFill" src="{{item.cover_image}}"></image>
+      </view>
+      <view class="good-content">
+        <view class="good-warp">
+          <text class="good-title">{{item.title}}</text>
+          <view class="good-price-content">
+            <text class="good-price text-price">{{item.new_price}}</text>
+            <text class="good-old-price text-price">{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="type-box">
+    <view class="type-title">类别</view>
+    <view class="type-list">
+      <view wx:for="{{typeList}}" wx:key="index" class="type-item shadow bg-white">
+        <view class="type-icon shadow bg-white round"></view>
+        <view>
+          <view class="type-name">{{item.name}}</view>
+          <view class="type-len">{{item.ssfl.length}}菜单</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="hot-box">
+    <view class="hot-title-box">
+      <view class="hot-title">特色饮品</view>
+      <view class="hot-more">更多</view>
+    </view>
+    <view class="hot-list">
+      <view wx:for="{{hotGoods}}" wx:key="index" class="hot-item">
+        <view class="hot-image-box">
+          <image class="hot-image shadow-lg" mode="aspectFill" src="{{item.cover_image}}" />
+        </view>
+        <view class="hot-item-content">
+          <view>
+            <view class="hot-name">{{item.title}}</view>
+            <view class="hot-desc">{{item.description}}</view>
+          </view>
+          <text class="hot-price text-price">{{item.new_price}}</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>
